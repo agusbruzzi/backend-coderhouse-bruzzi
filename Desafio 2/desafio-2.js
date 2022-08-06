@@ -47,7 +47,13 @@ class Contenedor {
 
   async getAll() {
     const productos = await this.read();
-    console.log(productos);
+    return productos;
+  }
+
+  async getRandom() {
+    const productos = await this.read();
+    const aleatorio = productos[Math.floor(Math.random() * productos.length)];
+    return aleatorio;
   }
 
   async deleteById(idBuscado) {
@@ -96,7 +102,7 @@ class Contenedor {
 }
 
 const archivo = new Contenedor("./productos.json");
-archivo.save({
+/*archivo.save({
   title: "Paleta",
   price: 126.85,
   thumbnail:
@@ -105,4 +111,6 @@ archivo.save({
 //archivo.getById(2);
 //archivo.getAll();
 //archivo.deleteById(2);
-//archivo.deleteAll();
+//archivo.deleteAll();*/
+
+module.exports = Contenedor;
