@@ -1,0 +1,34 @@
+html
+    head
+        title='test pug'
+    body
+        h1='Ingrese nuevo producto'
+        a(href='http://localhost:8080/products') Ver listado de productos
+        br
+        br
+        form(
+            method='POST'
+            action='/products')
+            label Ingrese nombre:
+            input(
+                type="text" 
+                name="title"
+                )
+            br
+            label Ingrese precio:
+            input(
+                type="number" 
+                name="price"
+                )
+            br
+            label Ingrese link de imagen:
+            input(
+                type="text" 
+                name="imagen"
+                )
+            br
+            br
+            input(
+            type="submit" 
+            value="Enviar"
+                )

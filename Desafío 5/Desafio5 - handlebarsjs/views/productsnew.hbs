@@ -1,0 +1,17 @@
+{{> navbar}}
+<br/>
+
+<h1>Ingrese nuevo producto</h1>
+<a href="http://localhost:8080/products"> Ver listado de productos</a>
+<br />
+<br />
+<form method="POST" action="/products">
+            Nombre producto: <input type="text" name="title"><br>
+            Precio producto: <input type="number" name="price"><br>
+            Link Imagen producto: <input type="text" name="imagen"><br><br>
+            <input type="submit" value="Enviar">
+</form>
+
+<br/>
+{{> footer}}
+<br/>

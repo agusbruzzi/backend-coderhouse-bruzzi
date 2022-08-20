@@ -1,0 +1,17 @@
+html
+    head
+        title='test pug'
+        style
+            include styles.css
+    body
+        h1="listado de productos"
+        a(href='http://localhost:8080/') Ingresar nuevo producto
+        br
+        br
+        div
+        for item in products
+            div
+                p=item.id
+                p=item.title
+                p=item.price
+                img(class='product-img', src=item.thumbnail)
