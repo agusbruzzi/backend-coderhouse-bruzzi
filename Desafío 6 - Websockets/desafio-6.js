@@ -6,7 +6,7 @@ const app = express();
 const httpServer = require("http").createServer(app);
 const io = require("socket.io")(httpServer);
 
-httpServer.listen(3000, () => console.log("SERVER ON"));
+httpServer.listen(8080, () => console.log("SERVER ON"));
 
 app.use(express.json());
 app.use(express.static(__dirname + "/public"));
