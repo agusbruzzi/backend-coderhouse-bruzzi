@@ -1,0 +1,1 @@
+console.log("primer archivo"),(()=>{for(let o=0;o<10;o++)console.log("numero: "+o)})(),console.log("ultimo archivo");
