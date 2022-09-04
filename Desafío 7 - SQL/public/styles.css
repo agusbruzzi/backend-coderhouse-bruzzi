@@ -1,0 +1,16 @@
+h1 {
+  font-family: 'Lucida Console', 'Courier New', monospace;
+}
+
+.name-chat{
+  color: blue;
+}
+.date-chat{
+  color: brown;
+}
+.msg-chat{
+  color: green;
+}
+.chat{
+  display: inline;
+}

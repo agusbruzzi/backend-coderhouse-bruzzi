@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/public/styles.css" />
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/public/index-front.js"></script>
+  </head>
+  <body>
+    <h1>Ingrese nuevo producto</h1><br>
+    <br>
+    <br>
+        Nombre producto: <input type="text" name="title" id="name-product"><br>
+        Precio producto: <input type="number" name="price" id="price-product"><br>
+        Link Imagen producto: <input type="text" name="imagen" id="img-product"><br><br>
+        <br><button onclick="sendProd()">Enviar</button>
+    
+    <div id="div-products"></div>
+
+    <h1>Centro de mensajes</h1><br>
+    Ingrese su nombre: <br><input id="box-name" type="text" value="">
+    <br>Ingrese su mensaje:<br><input id="box-msg" type="text" value="">
+    
+    <br><button onclick="sendMsg()">Enviar</button>
+    <div id="div-chat"></div>
+
+
+
+  </body>
+</html>
