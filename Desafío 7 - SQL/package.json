@@ -1,7 +1,7 @@
 {
   "name": "test",
   "version": "0.0.0",
-  "description": "algo random testeando",
+  "description": "desafío 7",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
@@ -12,6 +12,9 @@
   "dependencies": {
     "ejs": "^3.1.8",
     "express": "^4.18.1",
-    "socket.io": "^4.5.1"
+    "knex": "^0.21.17",
+    "mysql": "^2.18.1",
+    "socket.io": "^4.5.1",
+    "sqlite3": "^5.0.2"
   }
 }

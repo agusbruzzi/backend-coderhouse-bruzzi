@@ -1,3 +1,6 @@
+const Contenedor = require('./data/data_metods/knex-data');
+const ContenedorSQLite3 = require('./data/data_metods/sqlite3-db');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -14,46 +17,55 @@ app.use(express.json());
 
 app.set('view engine', 'ejs');
 
-let chat = [];
-
-const products = [
-  {
-    id: 1,
-    title: 'remera',
-    price: 500,
-    thumbnail: 'https://deliverind.com.ar/wp-content/uploads/2022/06/REMERA-REGULAR-FIT-SOFT-22-PORTADA-01-scaled.jpg',
-  },
-  {
-    id: 2,
-    title: 'pantalon',
-    price: 900,
-    thumbnail: 'https://deliverind.com.ar/wp-content/uploads/2020/11/UNIDAD-71-scaled.jpg',
-  },
-  {
-    id: 3,
-    title: 'medias',
-    price: 200,
-    thumbnail: 'https://deliverind.com.ar/wp-content/uploads/2021/09/4-10-scaled.jpg',
-  },
-];
-
 app.get('/', (req, res) => {
-  res.render('pages/index', { products: products, productsExist: true });
+  res.render('pages/index'); //, { products: products, productsExist: true }
 });
 
 io.on('connection', (socket) => {
-  io.sockets.emit('arr-chat', chat);
-  io.sockets.emit('arr-products', products);
+  const data_products = new Contenedor('products');
+  const data_chat = new ContenedorSQLite3();
+
+  (async function () {
+    const chat = await data_chat.mostrarMensajes();
+    io.sockets.emit('arr-chat', chat);
+  })();
+  (async function () {
+    const productos = await data_products.mostrarProductos();
+    io.sockets.emit('arr-products', productos);
+  })();
 
   socket.on('data-generica', (data) => {
-    chat.push(data);
-    io.sockets.emit('arr-chat', chat);
+    const mensaje = {
+      name: data.name,
+      msg: data.msg,
+      date: data.date,
+    };
+    data_chat.insertMsg(mensaje);
+    (async function () {
+      const chat = await data_chat.mostrarMensajes();
+      io.sockets.emit('arr-chat', chat);
+    })();
   });
+
   socket.on('data-products', (data) => {
-    let lastID = products[products.length - 1].id;
-    data.id = lastID + 1;
-    const newProduct = { id: data.id, title: data.title, price: data.price, thumbnail: data.thumbnail };
-    products.push(newProduct);
-    io.sockets.emit('arr-products', products);
+    const caracteres = 'abcdefghijkmnpqrtuvwxyzABCDEFGHJKMNPQRTUVWXYZ2346789';
+    let codigo = '';
+    for (i = 0; i < 20; i++) codigo += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+    data.code = codigo;
+    data.timestamp = Date.now();
+    const product = {
+      product_name: data.name,
+      product_code: data.code,
+      product_price: data.price,
+      product_img: data.img,
+      product_stock: data.stock,
+      product_timestamp: data.timestamp,
+      product_description: data.description,
+    };
+    data_products.insertProduct(product);
+    (async function () {
+      const productos = await data_products.mostrarProductos();
+      io.sockets.emit('arr-products', productos);
+    })();
   });
 });
