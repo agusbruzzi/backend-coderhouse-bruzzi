@@ -1,0 +1,119 @@
+-----------------------------------------------------PUNTO 1 Y 2------------------------------------------------------------------
+mongod --dbpath "C:\Users\54351\Desktop\BD-MDB" --auth --> interno
+
+-------------------------------------------------------PRODUCTOS----------------------------------------------------------------------
+
+db.products.insert({timestamp:1662007058984,nombre:"pantalon",descripcion:"descripción del producto",codigo:"dnAMkik3rg9gkhfBdZd8",precio:2800,foto:"https://deliverind.com.ar/wp-content/uploads/2020/11/UNIDAD-71-scaled.jpg",stock:3})
+
+db.products.insert({timestamp:1662007056984,nombre:"remera",descripcion:"descripción del producto",codigo:"qapDh3XJqchG6MZ8rZjJ",precio:2399,foto:"https://deliverind.com.ar/wp-content/uploads/2022/06/REMERA-REGULAR-FIT-SOFT-22-PORTADA-01-scaled.jpg",stock:5})
+
+db.products.insert({timestamp:1662007058284,nombre:"medias",descripcion:"descripción del producto",codigo:"9f9anVrhidnxewBwpvXn",precio:850,foto:"https://deliverind.com.ar/wp-content/uploads/2021/09/4-10-scaled.jpg",stock:6})
+
+db.products.insert({timestamp:1662568058284,nombre:"campera",descripcion:"descripción del producto",codigo:"XFP9wEYpgZg7Hzq7WX4C",precio:3650,foto:"https://deliverind.com.ar/wp-content/uploads/2021/09/4-10-scaled.jpg",stock:6})
+
+db.products.insert({timestamp:1662007058284,nombre:"gorra",descripcion:"descripción del producto",codigo:"xTCziWDP7KiKF3PxyMBC",precio:1099,foto:"https://deliverind.com.ar/wp-content/uploads/2021/09/4-10-scaled.jpg",stock:6})
+
+db.products.insert({timestamp:1662007058284,nombre:"top",descripcion:"descripción del producto",codigo:"K3YFEcHtxkCnyNzZyD2v",precio:1999,foto:"https://deliverind.com.ar/wp-content/uploads/2021/09/4-10-scaled.jpg",stock:6})
+
+db.products.insert({timestamp:1662007058284,nombre:"zapatillas",descripcion:"descripción del producto",codigo:"bCPWKgvUFeKxyxHmZtMK",precio:3999,foto:"https://deliverind.com.ar/wp-content/uploads/2021/09/4-10-scaled.jpg",stock:6})
+
+db.products.insert({timestamp:1662007058284,nombre:"blazer",descripcion:"descripción del producto",codigo:"tz6Xtp4eG2kfnTWgvrMU",precio:3655,foto:"https://deliverind.com.ar/wp-content/uploads/2021/09/4-10-scaled.jpg",stock:6})
+
+db.products.insert({timestamp:1662007058284,nombre:"short",descripcion:"descripción del producto",codigo:"akZaHgjEu6GaEfvAaQGG",precio:2899,foto:"https://deliverind.com.ar/wp-content/uploads/2021/09/4-10-scaled.jpg",stock:6})
+
+db.products.insert({timestamp:1662007058284,nombre:"polera",descripcion:"descripción del producto",codigo:"MH9KeQDYybHnAGXuHXkP",precio:2850,foto:"https://deliverind.com.ar/wp-content/uploads/2021/09/4-10-scaled.jpg",stock:6})
+
+-------------------------------------------------------MENSAJES----------------------------------------------------------------------
+
+db.messages.insert({ name: "Julian", msg: "¡Hola!", date: 07/09/2022 22:59:30 })
+
+db.messages.insert({ name: "Tamara", msg: "¡Hola, Julian!", date: 07/09/2022 23:02:15 })
+
+db.messages.insert({ name: "Julian", msg: "¿Cómo estás?", date: 07/09/2022 23:05:42 })
+
+db.messages.insert({ name: "Tamara", msg: "¡Muy bien! ¿vos todo bien?", date: 07/09/2022 23:07:22 })
+
+db.messages.insert({ name: "Julian", msg: "Sí, todo bien", date: 07/09/2022 23:08:40 })
+
+db.messages.insert({ name: "Facundo", msg: "¡Hola, chicos! disculpen la tardanza", date: 07/09/2022 23:12:17 })
+
+db.messages.insert({ name: "Francisco", msg: "¡Buenas!", date: 07/09/2022 23:13:05 })
+
+db.messages.insert({ name: "Julian", msg: "¡Chicos! ¿Cómo están?", date: 07/09/2022 23:14:57 })
+
+db.messages.insert({ name: "Facundo", msg: "Muy bien", date: 07/09/2022 23:15:38 })
+
+db.messages.insert({ name: "Francisco", msg: "Genial", date: 07/09/2022 23:16:04 })
+
+---------------------------------------------------LISTADO (PUNTO 3)------------------------------------------------------------------
+
+db.products.find().pretty()
+db.messages.find().pretty()
+
+--------------------------------------------------CANTIDAD (PUNTO 4)------------------------------------------------------------------
+
+db.products.estimatedDocumentCount()
+db.messages.estimatedDocumentCount()
+
+-----------------------------------------------------CRUD (PUNTO 5)----------------------------------------------------------------
+    Agregar un producto más en la colección de productos    
+
+db.products.insert({timestamp:1662007058964,nombre:"buzo",descripcion:"descripción del producto",codigo:"wD2mPyXZW6R56nPgp9dT",precio:100,foto:"https://deliverind.com.ar/wp-content/uploads/2021/13/UNIDAD-41-scaled.jpg",stock:6})
+
+--------------------------------------------------------------------------------------------------------------------------------------
+    Realizar una consulta por nombre de producto específico:    
+--------------------------------------------------------------------------------------------------------------------------------------
+
+            Listar los productos con precio menor a 1000 pesos.
+
+db.products.find({"precio": {$lt: 400}})
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+            Listar los productos con precio entre los 1000 a 3000 pesos.  
+
+db.products.find({$and: [{"precio": {$gt: 1000},{"precio":{$lt: 3000}}]})
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+            Listar los productos con precio mayor a 3000 pesos. 
+
+db.products.find({"precio": {$gt: 400}})
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+            Realizar una consulta que traiga sólo el nombre del tercer producto más barato. 
+
+db.products.find().sort({"precio":1}).skip(2).limit(1)
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+            Hacer una actualización sobre todos los productos, agregando el campo stock a todos ellos con un valor de 100. 
+
+db.products.updateMany({"_id":{$exists: true}},{$set: {"stock": 100}},{upsert: true}) 
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+            Cambiar el stock a cero de los productos con precios mayores a 4000 pesos.   
+
+ db.products.updateMany({"precio":{$gt: 4000}},{$set: {"stock": 0}},{upsert: true})
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+            Borrar los productos con precio menor a 1000 pesos   
+
+db.products.deleteMany({"precio":{$gt: 200}})
+
+-----------------------------------------------------AUTH (PUNTO 6)----------------------------------------------------------------
+
+    Crear un usuario 'pepe' clave: 'asd456' que sólo pueda leer la base de datos ecommerce. Verificar que pepe no pueda cambiar la información.
+
+db.createUser({"user": "pepe", "pwd": "asd456", "roles":[{"role": "read", db: "mibase"}]})
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
