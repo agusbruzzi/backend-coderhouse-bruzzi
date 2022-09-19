@@ -1,0 +1,1 @@
+mongod --dbpath "C:\Users\54351\Desktop\BD-MDB-CODER"
