@@ -1,19 +1,21 @@
 {
-  "name": "test",
-  "version": "0.0.0",
-  "description": "algo random testeando",
+  "name": "mongoose",
+  "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
-  "author": "Agustina Bruzzi",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.1",
+    "firebase-admin": "^11.0.1",
     "mongoose": "^6.6.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
-  }
+  },
+  "type": "module"
 }
