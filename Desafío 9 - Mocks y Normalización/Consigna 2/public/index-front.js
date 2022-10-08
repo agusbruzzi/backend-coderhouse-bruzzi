@@ -1,11 +1,18 @@
 const socket = io();
 
+import { denormalize } from './functions.js';
+
 socket.on('connect', () => {});
 
 socket.on('data-generica', (data) => {});
 
 socket.on('arr-chat', (data) => {
-  const html = data.reduce(
+  let denormalizedChats = denormalize(data);
+
+  let compression = (JSON.stringify(denormalizedChats).length / JSON.stringify(data).length) * 100;
+  document.getElementById('div-compres').innerText = `El porcentaje de compresion es %${compression.toString().slice(0, 5)}`;
+
+  const html = denormalizedChats.reduce(
     (html, item) => '<div>' + '<p class="name-chat chat">' + item.nombre + '<p class="date-chat chat">' + item.date + '<p class="msg-chat chat">' + item.mensaje + '</p></div>' + html,
     ''
   );

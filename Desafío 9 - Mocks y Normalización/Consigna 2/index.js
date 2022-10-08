@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const { normalizarChat, desnormalizarChat } = require('./normalizr/normalizarMensajes.js');
 const urlcodedParser = bodyParser.urlencoded({ extended: false });
 
 const httpServer = require('http').createServer(app);
@@ -21,16 +22,17 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
   //Actualizar chat en el front
   let chat = read('./mensajes.json');
-  let chatNormalizado = normalizadorMensajes(chat);
+  let chatNormalizado = normalizarChat(chat);
   io.sockets.emit('arr-chat', chatNormalizado);
 
   socket.on('data-generica', (data) => {
     //Agregar info al archivo de chat
+    let chat = read('./mensajes.json');
     chat.push(data);
+    write('./mensajes.json', chat);
 
     //Actualizar chat en el front
-    let chat = read('./mensajes.json');
-    let chatNormalizado = normalizadorMensajes(chat);
+    let chatNormalizado = normalizarChat(chat);
     io.sockets.emit('arr-chat', chatNormalizado);
   });
 });
