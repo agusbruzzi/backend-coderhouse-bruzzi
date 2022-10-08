@@ -1,11 +1,11 @@
 import express, { json } from "express";
-import usuariosRouter from "./router/router.js";
+import router from "./router/router.js";
 
 const app = express();
 
 app.use(json());
 
-app.use("/api/usuarios", usuariosRouter);
+app.use("/api/productos-test", router);
 
 const PORT = 8080;
 const server = app.listen(PORT, () => {

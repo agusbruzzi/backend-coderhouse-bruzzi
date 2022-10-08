@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/public/styles.css" />
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/public/index-front.js"></script>
+  </head>
+  <body>
+    <h1>Centro de mensajes</h1><br>
+    Ingrese su casilla de correo: <br><input id="box-casilla" type="text" value="">
+    <br>Ingrese su nombre:<br><input id="box-nombre" type="text" value="">
+    <br>Ingrese su apellido:<br><input id="box-apellido" type="text" value="">
+    <br>Ingrese su edad:<br><input id="box-edad" type="text" value="">
+    <br>Ingrese su alias:<br><input id="box-alias" type="text" value="">
+    <br>Ingrese su avatar:<br><input id="box-avatar" type="text" value="">
+    <br>Ingrese su zzmensaje:<br><input id="box-msg" type="text" value="">
+    
+    <br><button onclick="sendMsg()">Enviar</button>
+    <div id="div-chat"></div>   
+
+
+
+  </body>
+</html>
