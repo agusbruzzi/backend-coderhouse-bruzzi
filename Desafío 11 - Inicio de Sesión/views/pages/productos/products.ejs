@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="/public/index-front.js"></script>
+  </head>
+  <body>
+    <h1>Bienvenido <%=nombre %> !</h1>
+    <form method="GET" action="/cerrar-sesion">
+      <input type="submit" value="Cerrar sesión">
+    </form>
+    <h2>Ingrese nuevo producto</h2><br>
+    <br>
+    <br><form method="POST" action="/products-list">
+        Nombre producto: <input type="text" name="title"><br>
+        Precio producto: <input type="number" name="price"><br>
+        Link Imagen producto: <input type="text" name="imagen"><br><br>
+        <input type="submit" value="Enviar">
+    </form>
+    <a href="http://localhost:8080/products-list">Ver todos los productos</a>
+  </body>
+</html>

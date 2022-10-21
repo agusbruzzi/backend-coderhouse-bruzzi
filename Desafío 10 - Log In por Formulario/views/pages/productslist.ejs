@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+    <h1><%=title %></h1>
+    <a href="http://localhost:8080/products">Volver</a>
+    <br>
+    <% products.forEach((item)=>{ %>
+        <p>
+            id: <%=item.id%><br/>
+            titulo: <%=item.nombre%><br/>
+            price: <%=item.precio%><br/>
+        </p>
+    <% }) %>
+  </body>
+</html>
