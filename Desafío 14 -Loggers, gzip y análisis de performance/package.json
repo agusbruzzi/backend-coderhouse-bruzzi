@@ -4,11 +4,14 @@
   "description": "desafio 10",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node benchmark.js",
+    "start": "0x index.js"
   },
   "author": "Agustina Bruzzi",
   "license": "ISC",
   "dependencies": {
+    "0x": "^5.4.1",
+    "autocannon": "^7.10.0",
     "bcrypt": "^5.0.1",
     "compression": "^1.7.4",
     "connect-mongo": "^4.6.0",

@@ -239,6 +239,8 @@ app.get('/info', (req, res) => {
   const processId = process.pid;
   const carpetaProyecto = process.cwd();
   const procesadoresNum = require('os').cpus().length;
+  const array = [argEntrada, plataforma, versionNode, memoriaTotal, pathEjecucion, processId, carpetaProyecto, procesadoresNum];
+  console.log(array);
   res.render('pages/info/info', {
     argumentos: argEntrada,
     plataforma: plataforma,
@@ -252,24 +254,27 @@ app.get('/info', (req, res) => {
 });
 
 /////////////////////////////////////////////////////////////////////RANDOMS/////////////////////////////////////////////////////////////////////
-const { fork } = require('child_process');
+//const { fork } = require('child_process');
 app.get('/randoms', checkAuthentication, (req, res) => {
   res.render('pages/randoms/random', { resultado: 0 });
 });
 app.post('/randoms', checkAuthentication, (req, res) => {
-  const { body } = req;
-  const cantidad = body.cantidad;
-  if (cantidad) {
-    let calculo = fork('./random.js');
-    calculo.send('start');
-    calculo.on('message', (msg) => {
-      const { data, type } = msg;
-      switch (type) {
-        case 'claves':
-          res.end(res.render('pages/randoms/random', { resultado: data }));
-          break;
-      }
-    });
+  //const { body } = req;
+  //const cantidad = body.cantidad;
+  res.end(res.render('pages/randoms/random', { resultado: 0 }));
+});
+//LA CONSIGNA PIDE SACAR EL CHILD PROCESS DE RANDOM
+// if (cantidad) {
+//let calculo = fork('./random.js');
+//calculo.send('start');
+//calculo.on('message', (msg) => {
+//const { data, type } = msg;
+//switch (type) {
+//case 'claves':
+//res.end(res.render('pages/randoms/random', { resultado: 0 }));
+//break;
+//  }
+/* });/*
   } else {
     let calculo = fork('./random.js');
     calculo.send('start');
@@ -282,4 +287,4 @@ app.post('/randoms', checkAuthentication, (req, res) => {
       }
     });
   }
-});
+});*/
