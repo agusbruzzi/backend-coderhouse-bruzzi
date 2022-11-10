@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="/public/index-front.js"></script>
+  </head>
+  <body>
+    <h1>INFO</h1>
+    <form method="GET" action="/productos">
+      <input type="submit" value="Volver a inicio">
+    </form>
+    <h2>Argumentos de entrada:</h2><br>
+    <p><%=argumentos %></p>
+    <br>
+    <h2>Nombre de la plataforma</h2><br>
+    <p><%=plataforma %></p>
+    <br>
+    <h2>Versión de node.js</h2><br>
+    <p><%=versionNode %></p>
+    <br>
+    <h2>Memoria total reservada (rss)</h2><br>
+    <p><%=memoriaTotal %></p>
+    <br>
+    <h2>Path de ejecución</h2><br>
+    <p><%=pathEjecucion %></p>
+    <br>
+    <h2>Process id</h2><br>
+    <p><%=processId %></p>
+    <br>
+    <h2>Carpeta del proyecto</h2><br>
+    <p><%=carpetaProyecto %></p>
+    <h2>Numero de procesadores</h2><br>
+    <p><%=procesadoresNum %></p>
+    <br>
+  </body>
+</html>
