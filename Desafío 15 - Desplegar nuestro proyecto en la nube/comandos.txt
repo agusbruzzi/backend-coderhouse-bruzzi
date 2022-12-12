@@ -1,0 +1,11 @@
+-----Para iniciar los servidores sin pm2
+nodemon index.js fork 8080
+nodemon index.js cluster 8080
+
+-----Para iniciar los servidores con forever sin pm2
+forever index.js fork 8080
+forever index.js cluster 8080
+
+-----Para iniciar los servidores con con pm2
+pm2 start index.js --name="serverFork" --watch -- fork PORT
+pm2 start index.js --name="serverCluster" --watch -i max -- PORT

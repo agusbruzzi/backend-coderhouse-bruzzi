@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+    <h1><%=title %></h1>
+    <form method="GET" action="/productos">
+      <input type="submit" value="Volver">
+    </form>    <br>
+    <% products.forEach((item)=>{ %>
+        <p>
+            id: <%=item.id%><br/>
+            titulo: <%=item.nombre%><br/>
+            price: <%=item.precio%><br/>
+        </p>
+    <% }) %>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="/public/index-front.js"></script>
+  </head>
+  <body>
+    <h1>RANDOM</h1>
+    <form method="GET" action="/productos">
+      <input type="submit" value="Volver a inicio">
+    </form><br><br><br>
+    <form method="POST" action="/randoms">
+      Cantidad: <input type="number" name="cantidad"><br><br>
+      <input type="submit" value="Calcular">
+    </form><br><br>
+    <h2>Resultado:</h2><br>
+
+    <% if(resultado==0){ %>
+      <p><%=resultado %></p>
+      <% } else{ %>  
+      <% resultado.forEach((item)=>{ %>
+        <p>
+            Numero: <%=item.clave%><br/>
+            Cantidad: <%=item.cantidad%><br/>
+        </p>
+      <% }) %>
+    <% } %>
+    
+  </body>
+</html>
